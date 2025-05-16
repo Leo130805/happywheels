@@ -1,0 +1,104 @@
+html,
+body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+#map {
+  width: 90%; /* Adjust width to your desired size */
+  height: 100%; /* Adjust height to your desired size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+#map svg {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* So the map remains interactive */
+}
+
+circle {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1px;
+  pointer-events: auto;
+}
+
+.time-filter-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+  margin: 1em;
+}
+
+.time-filter-header label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-filter-header time,
+.time-filter-header em {
+  display: block;
+}
+
+.time-filter-header em {
+  color: #888;
+  font-style: italic;
+}
+
+#time-slider {
+  width: 400px;
+}
+
+#map svg circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+.legend {
+  display: flex;
+  width: 90%;
+  max-width: none;
+  gap: 1px;
+  margin: 1rem 0;
+  margin-bottom: 3rem;
+}
+
+.legend > div {
+  flex: 1;
+  padding: 0.4rem 1rem;
+  background-color: var(--color);
+  color: white;
+  font-weight: 600;
+}
+
+
+/* Text alignment per block */
+.legend > div:nth-child(1) { text-align: left; }
+.legend > div:nth-child(2) { text-align: center; }
+.legend > div:nth-child(3) { text-align: right; }
